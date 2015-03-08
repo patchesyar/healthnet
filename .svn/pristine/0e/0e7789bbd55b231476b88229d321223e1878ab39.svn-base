@@ -1,0 +1,32 @@
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from apptcalendar.models import Day, Event
+
+
+
+@login_required(login_url='/login/')
+def viewCalendar(request):
+	kid = request.user.username
+	return HttpResponse("Sup " + kid + ", I'm your collinder.")
+
+def viewDay(request, day_id):
+	thisuser = request.user
+	d = get_object_or_404(Day, pk=day_id)
+	duser = d.user_id
+	if not thisuser == get_object_or_404(User, pk=duser):
+		return HttpResponse("You cant see this page, "\
+				+ thisuser.username)
+	return HttpResponse("You are viewing day %s." % day_id)
+
+def viewEvent(request, event_id):
+	thisuser = request.user
+	e = get_object_or_404(Event, pk=event_id)
+	dnumber = e.day_id
+	d = get_object_or_404(Day, pk=dnumber)
+	euser = d.user_id
+	if not thisuser == get_object_or_404(User, pk=euser):
+		return HttpResponse("You cant see this page, "\
+				+ thisuser.username)
+	return HttpResponse("You are viewing event %s." % event_id)

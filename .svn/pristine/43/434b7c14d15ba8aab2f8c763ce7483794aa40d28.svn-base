@@ -1,0 +1,6 @@
+{% block content %}
+    <body style="background:#80BFFF">
+    <h2>You have successfully been logged out.</h2>
+    <p>Click <a href = "/login/">here</a> to log back in.</p>
+
+{% endblock %}

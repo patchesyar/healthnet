@@ -1,0 +1,76 @@
+{% block content %}
+    <body style="background:#80BFFF">
+    <title>HealthNet:Register</title>
+    <h2>HealthNet Registration:</h2>
+    <form action = "/register/" method = "post">
+        {% csrf_token %}
+		<h3>Personal Information:</h3>
+		<div class = "firstName">
+		<label for = "id_firstName">First name:</label>
+		{{form.firstName}}
+		</div><br>
+		<div class = "lastName">
+		<label for = "id_lastName">Last name:</label>
+		{{form.lastName}}
+		</div><br>
+		<div class = "dob" align = "justify">
+		<label for = "id_dob">D.O.B.:</label>
+		{{form.dob}}
+		</div><br>
+		<div class = "phone">
+		<label for = "id_phone">Phone #:</label>
+		{{form.phone}}
+		</div><br>
+		<div class = "email">
+		<label for = "id_email">Email addr.:</label>
+		{{form.email}}
+		</div><br>
+		<div class = "ID">
+		<label for = "id_id">Insurance ID:</label>
+		{{form.ID}}
+		</div><br>
+		<div class = "Username">
+		<label for = "id_username">Username:</label>
+		{{form.username}}
+		</div><br>
+		<div class = "preferredHospital">
+		<label for = "id_prefHos">Preferred Hospital:</label>
+		{{form.prefHos}}
+		</div><br>
+		<h3>Emergency Contact Information:</h3>
+		<div class = "emerFirstName">
+		<label for = "id_emerFirstName">First name:</label>
+		{{form.efirstName}}
+		</div><br>
+		<div class = "emerLastName">
+		<label for = "id_emerLastName">Last name:</label>
+		{{form.elastName}}
+		</div><br>
+		<div class = "emerPhone">
+		<label for = "id_emerPhone">Phone #:</label>
+		{{form.ePhone}}
+		</div><br>
+		<h3>Medical Information:</h3>
+		<div class = "gender">
+		<label for = "id_gender">Gender:</label>
+		{{form.gender}}
+		</div><br>
+		<div class = "allergies">
+		<label for = "id_allergies">Allergies:</label>
+		{{form.allergies}}
+		</div><br>
+		<div class = "prescriptions">
+		<label for = "id_prescriptions">Prescriptions:</label>
+		{{form.prescriptions}}
+		</div><br>
+		<div class = "recentOps">
+		<label for = "id_recentOps">Recent Operations:</label>
+		{{form.recentOps}}
+		</div><br>
+        <!--{{form.as_p}} <br>-->
+
+        <input type = "submit" value = "Register">
+
+    </form>
+
+{% endblock %}

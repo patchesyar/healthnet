@@ -1,0 +1,23 @@
+1) Installation: Steps required for someone to take the zip file and make the program work. The target environment and any additional steps required for setup are explained here
+
+Firstly, it is necessary that the computer you run this software on has Python version 3.2.2 with Django version 1.6.5 installed within it.
+
+From a command line, after having changed to the directory that contains the manage.py file in HealthNet (HealthNet/trunk/HealthNet) and typing "manage.py runserver".
+The web server can be viewed from your computer by going to 127.0.0.1:8000 in the address bar of any internet browser.
+
+2) Known bugs and disclaimers.
+
+Disclaimer: This is the first release of the software. It is intended to deliver some, but not all, of the functionality requested by Dr. House. The main objective of this software is not to deliver to Dr. House a final working product for him to deploy for business use but to provide a prototype for his review, and for him to give feedback to the software developers about what he would like to have changed and/or added to a future release.
+
+3) Known missing Release-x features
+
+Statistical data for the users of the system may not be available with this release
+
+4) Basic execution and usage instructions (logins & passwords)
+
+For the purposes of editing the objects within the system, one can (after running the server as described in part (1) of this file) login to the admin page of the site by going to (127.0.0.1:8000/admin) in the address bar and login by using the general administration account:
+
+Login: "admin"
+Password: "password"
+
+It is important to realize that the admin account can view/change any user information and thus it should remain secret.

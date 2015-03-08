@@ -1,0 +1,12 @@
+{% block content %}
+
+    <h2>HealthNet Registration:</h2>
+    <form action = "/register/" method = "post">
+        {% csrf_token %}
+        {{form.as_p}} <br>
+
+        <input type = "submit" value = "Register">
+
+    </form>
+
+{% endblock %}

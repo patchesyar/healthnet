@@ -1,0 +1,6 @@
+{% block content %}
+
+    <h2>Your username and/or password are invalid.</h2>
+    <p>Click <a href = "/login/">here</a> to login again.</p>
+
+{% endblock %}

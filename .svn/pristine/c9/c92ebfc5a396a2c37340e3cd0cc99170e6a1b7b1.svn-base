@@ -1,0 +1,9 @@
+<html>
+<body>
+
+<center>Welcome to HealthNet!</center>
+<br><center>Click <a href = "/login/">here</a> to login.</center>
+<br><center>Don't have an account? Register <a href = "/register/">here!</a></center>
+
+</body>
+</html>

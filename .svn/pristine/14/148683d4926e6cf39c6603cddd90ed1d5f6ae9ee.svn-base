@@ -1,0 +1,6 @@
+{% block content %}
+
+    <h2>Hi {{username}}! You are now logged in.</h2>
+    <p>Click <a href = "/logout/">here</a> to logout.</p>
+
+{% endblock %}

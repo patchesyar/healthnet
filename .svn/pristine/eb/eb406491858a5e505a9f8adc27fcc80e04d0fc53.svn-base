@@ -1,0 +1,22 @@
+{% block content %}
+    <title>HealthNet:{{username}}</title>
+    <body style="background:#80BFFF">
+    <h2>Hi {{username}}! You are now logged in.</h2>
+    <style type = 'text/css'>
+    .container { position:relative; padding: 0 0 0 55px;}
+    #sidebar {
+        position:absolute;
+        top:0; bottom:0; left:0;
+        width:50px;
+        background-color:deepskyblue;
+    }
+    </style>
+    <div id = 'content'>
+        <div id = 'appt'><a href = "/calendar/appointment/">Your Appointments</a></div>
+        <div id = 'cal'><a href = "/calendar/">Calendar</a></div>
+        <div id = 'profile'><a href = "/account/">Your Account</a></div>
+        <div id = 'logout'><a href = "/logout/">Logout</a></div>
+    </div>
+    <!--<p>Click <a href = "/logout/">here</a> to logout.</p>-->
+
+{% endblock %}

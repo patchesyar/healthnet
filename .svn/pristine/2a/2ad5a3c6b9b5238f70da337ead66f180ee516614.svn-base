@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+    <h1>Your Appointments</h1>
+</head>
+<body>
+
+{% if Appointments %}
+    <ul>
+    {% for Appointment in Appointments %}
+    <li>{{ Appointment.time }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+<p>No appointments!</p>
+
+{% endif %}
+</body>
+</html>

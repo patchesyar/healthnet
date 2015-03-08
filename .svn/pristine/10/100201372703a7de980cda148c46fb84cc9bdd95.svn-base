@@ -1,0 +1,6 @@
+{% block content %}
+    <body style="background:#80BFFF">
+    <h2>You have successfully registered!</h2>
+    <p>Click <a href = "/login/">here</a> to login!</p>
+
+{% endblock %}

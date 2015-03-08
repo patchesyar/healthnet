@@ -1,0 +1,24 @@
+from django.conf.urls import patterns, include, url
+
+from django.contrib import admin
+
+admin.autodiscover()
+
+urlpatterns = patterns('',
+    # Examples:
+    # url(r'^$', 'HealthNet.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
+    url(r'^login/$', 'login.views.auth_login'),
+    url(r'^auth/$', 'login.views.auth_view'),
+    url(r'^logout/$', 'login.views.auth_logout'),
+    url(r'^loggedin/$', 'login.views.loggedin'),
+    url(r'^invalid/$', 'login.views.invalid_login'),
+    url(r'^register/$', 'login.views.register_user'),
+    url(r'^register_success/$', 'login.views.register_success'),
+    url(r'^appointments/$', 'SystemObjects.views.test'),
+    url(r'^admin/', include(admin.site.urls)),
+    #url(r'^testView/', 'HealthNet.views.testView'),
+    url(r'^$', 'HealthNet.views.home'),
+    url(r'^calendar/', include('apptcalendar.urls')),
+    #url(r'^SystemObjects/', 'SystemObjects.views.index'),
+)

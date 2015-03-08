@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>HealthNet v1.0</title>
+    <h1><center>Welcome to HealthNet!</center></h1>
+    <!--<br><p><center>Please login below:</center></p>-->
+</head>
+<body>
+<div id = "login-container">
+    <div id = "login_box">
+        <div>
+            <h2><center>Login:</center></h2>
+            <p><center>Don't have a HealthNet Account? Register <a href = "127.0.0.1:8000/Register.html">here!</a></center></p>
+        </div>
+        <form action = "127.0.0.1:8000/Index.html" class = "form-signin" method = "POST" style = "margin:0px;padding:1px;">
+            <div>
+                <div class = "login-label">
+                    <center>Username:<br></center>
+                </div>
+                <div>
+                    <center><input type = "text" name="username"></center>
+                </div>
+            </div>
+            <div>
+                <div class = "login-label">
+                    <center>Password:<br></center>
+                </div>
+                <div>
+                    <center><input type = "password" name = "password"></center>
+                </div>
+            </div>
+            <div>
+                <center><input class = "btn btnprimary" name = "submit" type = "submit" value = "Submit"></center>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
