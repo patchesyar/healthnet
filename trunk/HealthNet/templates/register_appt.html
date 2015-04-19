@@ -1,0 +1,31 @@
+{% extends "header.html" %}
+
+{% block title %}New Appointment{% endblock %}
+
+{% block content %}
+<h2>Creating a new appointment:</h2>
+<form id="register_form" action="/calendar/appointment/new/success/" method="post"><!--Change action-->
+    {% csrf_token %}
+
+    <h3>New Appointment</h3>
+
+    <div class="patient">
+        <label for="id_patient">Patient</label>
+        {{form.Patient}}
+    </div>
+
+    <div class="Doctor">
+        <label for="id_doctor">Doctor</label>
+        {{form.Doctor}}
+    </div>
+
+    <div class="Datetime">
+        <label for="id_time">Time</label>
+        {{form.Time}}
+    </div>
+
+    <input id="create_button" type="submit" value="Create">
+
+</form>
+
+{% endblock %}

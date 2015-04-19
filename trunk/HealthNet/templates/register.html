@@ -1,76 +1,123 @@
+{% extends "header.html" %}
+
+{% block title %}Register{% endblock %}
+
 {% block content %}
-    <body style="background:#80BFFF">
-    <title>HealthNet:Register</title>
-    <h2>HealthNet Registration:</h2>
-    <form action = "/register/" method = "post">
-        {% csrf_token %}
-		<h3>Personal Information:</h3>
-		<div class = "firstName">
-		<label for = "id_firstName">First name:</label>
-		{{form.firstName}}
-		</div><br>
-		<div class = "lastName">
-		<label for = "id_lastName">Last name:</label>
-		{{form.lastName}}
-		</div><br>
-		<div class = "dob" align = "justify">
-		<label for = "id_dob">D.O.B.:</label>
-		{{form.dob}}
-		</div><br>
-		<div class = "phone">
-		<label for = "id_phone">Phone #:</label>
-		{{form.phone}}
-		</div><br>
-		<div class = "email">
-		<label for = "id_email">Email addr.:</label>
-		{{form.email}}
-		</div><br>
-		<div class = "ID">
-		<label for = "id_id">Insurance ID:</label>
-		{{form.ID}}
-		</div><br>
-		<div class = "Username">
-		<label for = "id_username">Username:</label>
-		{{form.username}}
-		</div><br>
-		<div class = "preferredHospital">
-		<label for = "id_prefHos">Preferred Hospital:</label>
-		{{form.prefHos}}
-		</div><br>
-		<h3>Emergency Contact Information:</h3>
-		<div class = "emerFirstName">
-		<label for = "id_emerFirstName">First name:</label>
-		{{form.efirstName}}
-		</div><br>
-		<div class = "emerLastName">
-		<label for = "id_emerLastName">Last name:</label>
-		{{form.elastName}}
-		</div><br>
-		<div class = "emerPhone">
-		<label for = "id_emerPhone">Phone #:</label>
-		{{form.ePhone}}
-		</div><br>
-		<h3>Medical Information:</h3>
-		<div class = "gender">
-		<label for = "id_gender">Gender:</label>
-		{{form.gender}}
-		</div><br>
-		<div class = "allergies">
-		<label for = "id_allergies">Allergies:</label>
-		{{form.allergies}}
-		</div><br>
-		<div class = "prescriptions">
-		<label for = "id_prescriptions">Prescriptions:</label>
-		{{form.prescriptions}}
-		</div><br>
-		<div class = "recentOps">
-		<label for = "id_recentOps">Recent Operations:</label>
-		{{form.recentOps}}
-		</div><br>
-        <!--{{form.as_p}} <br>-->
+<h2>HealthNet Registration:</h2>
+<form id="register_form" action="/register/" method="post">
+    {% csrf_token %}
 
-        <input type = "submit" value = "Register">
+    <h3>Personal Information:</h3>
 
-    </form>
+    <div class="firstName">
+        <label for="id_firstName">First name:</label>
+        {{form.first_name}}
+    </div>
+
+
+    <div class="lastName">
+        <label for="id_lastName">Last name:</label>
+        {{form.last_name}}
+    </div>
+
+
+    <div class="dob" align="justify">
+        <label for="id_dob">D.O.B.:</label>
+        {{form.dob}}Format={mm/dd/year}
+    </div>
+
+
+    <div class="phone">
+        <label for="id_phone">Phone #:</label>
+        {{form.phone}}
+    </div>
+
+
+    <div class="email">
+        <label for="id_email">Email addr.:</label>
+        {{form.email}}
+    </div>
+
+
+    <div class="ID">
+        <label for="id_id">Insurance ID:</label>
+        {{form.ID}}
+    </div>
+
+
+    <div class="Username">
+        <label for="id_username">Username:</label>
+        {{form.username}}
+    </div>
+
+
+    <div class="Password">
+        <label for="id_password">Password:</label>
+        {{form.password1}}
+    </div>
+
+
+    <div class="Password2">
+        <label for="id_password2">Confirm Password:</label>
+        {{form.password2}}
+    </div>
+
+
+    <div class="preferredHospital">
+        <label for="id_prefHos">Preferred Hospital:</label>
+        {{form.prefHos}}
+    </div>
+
+
+    <h3>Emergency Contact Information:</h3>
+
+    <div class="emerFirstName">
+        <label for="id_emerFirstName">First name:</label>
+        {{form.efirstName}}
+    </div>
+
+
+    <div class="emerLastName">
+        <label for="id_emerLastName">Last name:</label>
+        {{form.elastName}}
+    </div>
+
+
+    <div class="emerPhone">
+        <label for="id_emerPhone">Phone #:</label>
+        {{form.ePhone}}
+    </div>
+
+
+    <h3>Medical Information:</h3>
+
+    <div class="gender">
+        <label for="id_gender">Gender:</label>
+        {{form.gender}}
+    </div>
+
+
+    <div class="allergies">
+        <label for="id_allergies">Allergies:</label>
+        {{form.allergies}}
+    </div>
+
+
+    <div class="prescriptions">
+        <label for="id_prescriptions">Prescriptions:</label>
+        {{form.prescriptions}}
+    </div>
+
+
+    <div class="recentOps">
+        <label for="id_recentOps">Recent Operations:</label>
+        {{form.recentOps}}
+    </div>
+
+    <!--{{form.as_p}} <br>-->
+
+    <input id="reg_button" type="submit" value="Register">
+
+</form>
 
 {% endblock %}

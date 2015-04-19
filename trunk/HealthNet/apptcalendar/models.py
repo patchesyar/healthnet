@@ -1,8 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
+# A month is associated with one user and contains many days, 
+# which may individually have many events
 class Month(models.Model):
 	user = models.ForeignKey(User)
+	startdate = models.DateField("startdate",\
+			default=datetime.date.today().replace(day=1))
+	nextmonth_id = models.IntegerField(default=-1)
+	lastmonth_id = models.IntegerField(default=-2)
 	day1 = models.IntegerField(default=-1)
 	day2 = models.IntegerField(default=-2)
 	day3 = models.IntegerField(default=-3)
@@ -35,18 +42,27 @@ class Month(models.Model):
 	day30 = models.IntegerField(default=-30)
 	day31 = models.IntegerField(default=-31)
 	def __str__(self):
-		return 'march'
+		return str(self.id)
 
+class CalendarHome(models.Model):
+	user = models.OneToOneField(User)
+	currentmonth = models.ForeignKey(Month)
+
+# Any given day is associated with one user and has many events
 class Day(models.Model):
-	date = models.DateField('day')
-	user = models.ForeignKey(User)
-	def __str__(self):
-		return str(self.date)
+    date = models.DateField('day')
+    user = models.ForeignKey(User)
 
+    def __str__(self):
+        return str(self.date)
+
+
+# An event is associated with one day and takes place in a timeframe.
 class Event(models.Model):
-	start = models.TimeField('start time')
-	end = models.TimeField('end time')
-	name = models.CharField(max_length=60)
-	day = models.ForeignKey(Day)
-	def __str__(self):
-		return self.name
+    start = models.TimeField('start time')
+    end = models.TimeField('end time')
+    name = models.CharField(max_length=60)
+    day = models.ForeignKey(Day)
+
+    def __str__(self):
+        return self.name

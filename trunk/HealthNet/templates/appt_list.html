@@ -1,0 +1,25 @@
+{% extends "header.html" %}
+
+{% block title %}Appointment List{% endblock %}
+
+{% block content %}
+<h1>Listing appointments for {{first_name}} </h1>
+<div id="appt_list">
+    {% if apptsPatient or apptsDoctor %}
+    {% for Appointment in apptsPatient %}
+    <p><a href={{ Appointment.id }}>{{ Appointment.time }}: {{ Appointment.Patient }}
+        and {{ Appointment.Doctor }}</a></p>
+    {% endfor %}
+    {% for Appt in apptsDoctor %}
+    <p>{{ Appt.time }}: {{ Appt.Patient }} and {{ Appt.Doctor }}</p>
+    {% endfor %}
+    {% else %}
+    <p>No appointments!</p>
+
+    {% endif %}
+</div>
+
+    <form action="/calendar/appointment/new" method="get">
+    <input type="submit" value="Schedule a new appointment" id="frm1_submit" />
+    </form>
+{% endblock %}

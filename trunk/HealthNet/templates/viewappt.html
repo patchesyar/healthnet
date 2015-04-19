@@ -1,0 +1,22 @@
+{% extends "header.html" %}
+
+{% block title %}View Appointment{% endblock %}
+
+{% block content %}
+
+    <table border=1px>
+    <tr>
+        <td>Patient:</td>
+        <td>{{appt.Patient}}</td>
+    </tr>
+    <tr>
+        <td>Doctor:</td>
+        <td>{{appt.Doctor}}</td>
+    </tr>
+    <tr>
+        <td>Date:</td>
+        <td>{{appt.time}}</td>
+    </tr>
+</table>
+
+{% endblock %}

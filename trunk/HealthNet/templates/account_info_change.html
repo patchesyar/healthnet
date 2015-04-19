@@ -1,0 +1,44 @@
+{% extends "header.html" %}
+
+{% block content %}
+<body style="background:#80BFFF">
+<title>HealthNet:acccount_info_change</title>
+
+<h2>HealthNet Account Information Change:</h2>
+
+<form action="/account_info_change/" method="post">
+    {% csrf_token %}
+
+    <h3>Personal Information:</h3>
+
+    <div class="firstName">
+        <label for="id_firstName">First name:</label>
+        {{form.first_name}}
+    </div>
+    <br>
+
+    <div class="lastName">
+        <label for="id_lastName">Last name:</label>
+        {{form.last_name}}
+    </div>
+    <br>
+
+    <div class="Username">
+        <label for="id_username">Username:</label>
+        {{form.username}}
+    </div>
+    <br>
+
+    <div class="email">
+        <label for="id_email">Email addr.:</label>
+        {{form.email}}
+    </div>
+    <br>
+
+    <!--{{form.as_p}} <br>-->
+
+    <input type="submit" value="Update">
+
+</form>
+
+{% endblock %}

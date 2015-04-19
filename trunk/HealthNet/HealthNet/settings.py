@@ -7,7 +7,7 @@ https://docs.djangoproject.com/en/1.6/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
-#from django.contrib.sites.models import Site
+# from django.contrib.sites.models import Site
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -42,7 +42,9 @@ INSTALLED_APPS = (
     'SystemObjects',
     'login',
     'apptcalendar',
+    'userinformation',
     'django.contrib.formtools',
+    'django.contrib.staticfiles'
 )
 
 SITE_ID = 1
@@ -54,6 +56,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 )
 
 ROOT_URLCONF = 'HealthNet.urls'
@@ -90,3 +93,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    '/items/',
+)

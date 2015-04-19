@@ -1,10 +1,7 @@
-<html>
-<body>
-<body style="background:#80BFFF">
-<title>HealthNet</title>
-<center>Welcome to HealthNet!</center>
-<br><center>Click <a href = "/login/">here</a> to login.</center>
-<br><center>Don't have an account? Register <a href = "/register/">here!</a></center>
-
-</body>
-</html>
+{% extends "header.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<center><h1>Welcome to HealthNet!</h1></center>
+<center>Click <a href="/login/">here</a> to login.</center>
+<center>Don't have an account? Register <a href="/register/">here!</a></center>
+{% endblock %}

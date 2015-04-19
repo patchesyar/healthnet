@@ -1,0 +1,104 @@
+#header{
+position: fixed;
+left: 500px;
+width: 90%;
+}
+#logo {
+height: 100px;
+
+}
+#sidebar{
+position: fixed;
+top: 1px;
+background: #00B0F0;
+height: 800px;
+width:100px;
+left: 0px;
+
+}
+#sidebar a{
+display: block;
+text-declaration: none
+border: 1px solid grey;
+background: #00B0F0;
+border-radius: 5px;
+color: black;
+
+}
+
+#sidebar a:link{
+display: block;
+text-decoration: none;
+border: 1px solid grey;
+border-radius: 5px;
+text-align: center;
+color: black:
+}
+#sidebar a:hover {
+background-color: white;
+text-decoration: none;
+}
+#sidebar a:visited {
+text-decoration: none;
+border: 1px solid grey;
+color: black;
+}
+#content {
+overflow: scroll;
+position: fixed;
+width: 90%;
+height: 85%;
+left:120px;
+top:100px;
+}
+
+body {
+background-color:#80BFFF;
+}
+
+
+#login {
+position: fixed;
+left: 40%;
+
+}
+#login label {
+width: 4em;
+float: left;
+text-align: right;
+margin-right: 0.5em;
+display: block
+}
+
+#login input
+{
+color: #781351;
+background: #fee3ad;
+border: 1px solid light blue;
+border-radius: 5px;
+}
+#register_form label {
+width: 10em;
+float: left;
+text-align: center;
+margin-right: 0.5em;
+display: block
+}
+
+#register_form input
+{
+color: #781351;
+background: #fee3ad;
+border: 1px solid light blue;
+border-radius: 5px;
+}
+#register_form reg_button{
+position: fixed;
+left: 200px;
+}
+#appt_list p{
+display: block
+background-color:#7000FF;
+border: 1px solid grey;
+border-radius: 5px;
+}

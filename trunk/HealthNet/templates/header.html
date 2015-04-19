@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HealthNet:{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett"/>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'HealthNet/style.css' %}"/>
+</head>
+
+<body>
+<!-- This area defines the header found at the top of each page !-->
+<div id="header">
+    <a href="/">
+        <img id="logo" src="{% static 'HealthNet/logo.png' %}" href="/" alt="HealthNet" height="100px">
+    </a>
+</div>
+
+<!-- This area defines the  sidebar portion on the left side of the page!-->
+<div id="sidebar">
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <a href="/login/">Login</a>
+    <a href="/loggedin/">Your Home</a>
+    <a href="/calendar/appointment/">Appointments</a>
+    <a href="/calendar/">Calendar</a>
+    <a href="/account/">Account Info</a>
+    <a href="/prescriptions/">Prescriptions</a>
+    <a href="/CSV/">CSV File User Generation</a>
+    <a href="/logout/">Logout</a>
+</div>
+
+
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

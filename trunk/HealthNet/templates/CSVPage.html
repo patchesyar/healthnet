@@ -1,0 +1,15 @@
+{% extends "header.html" %}
+
+{% block title %}CSV{% endblock %}
+
+{% block content %}
+<p style="font-size:20px">Here users can be generated into the system with CSV files.</p>
+<br>
+<p style="font-size:18px">The format for the CSV file generation is one of the following:</p>
+<p style="font-size:18px">Doctor, First Name, Last Name, Email, Password, Hospital</p>
+<p style="font-size:18px">Nurse, First Name, Last Name, Email, Password, Hospital</p>
+<p style="font-size:18px">Admin, First Name, Last Name, Email, Password, Hospital</p>
+<p style="font-size:18px">Patient, First Name, Last Name, Email, Password, Hospital, Insurance Number, Primary Doctor</p>
+<br>
+<p style="font-size:18px"><a href = '/CSVprocessing/'>Submit</a></p>
+{% endblock %}
