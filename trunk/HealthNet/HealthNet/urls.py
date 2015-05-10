@@ -1,6 +1,9 @@
 from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
+from login.views import *
+from login.forms import *
+
 
 admin.autodiscover()
 
@@ -16,21 +19,19 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'login.views.auth_logout'),
     url(r'^loggedin/$', 'login.views.loggedin'),
     url(r'^invalid/$', 'login.views.invalid_login'),
-    url(r'^register/$', 'login.views.register_user'),
+    url(r'^register/$', RegisterPatientWizard.as_view([PatientReg1, PatientReg2, PatientReg3])),
+    url(r'^register/employee/$', RegisterEmployeeWizard.as_view([EmployeeReg])),
     url(r'^register_success/$', 'login.views.register_success'),
     url(r'^admin/', include(admin.site.urls)),
-
     url(r'^$', 'HealthNet.views.home'),
     url(r'^calendar/', include('apptcalendar.urls')),
+    url(r'^messaging/', include('messaging.urls')),
     url(r'^logs/', include('viewlogs.urls')),
     url(r'^information/', include('userinformation.urls')),
     url(r'^header/', 'HealthNet.views.header'),
     url(r'^CSV/$', 'CSVFileApp.views.creation'),
     url(r'^CSVprocessing/$','CSVFileApp.views.processing'),
-    url(r'^register/doctor/$', 'login.views.reg_d'),
-    url(r'^register/nurse/$', 'login.views.reg_n'),
-    url(r'^register/patient/$', 'login.views.reg_p'),
-    url(r'^register/admin/$', 'login.views.reg_a'),
     url(r'^prescriptions/$','PrescriptionPage.views.main_page'),
     url(r'^prescription_stock/$','PrescriptionPage.views.stock'),
-)
+    url(r'^upload/', 'CSVFileApp.views.ProfileImageView'),
+) #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

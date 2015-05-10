@@ -1,0 +1,15 @@
+{% extends "header.html" %}
+
+{% block title %}Messaging{% endblock %}
+
+{% block content %}
+
+<ul>
+	Subject: {{message.subject}}<br>
+	To: {{message.sentto}}<br>
+	From: {{message.sentby}}<br>
+	At: {{message.timesent}}<br>
+	Message: {{message.message}}
+</ul>
+
+{% endblock %}

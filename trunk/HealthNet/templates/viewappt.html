@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <table border=1px>
+<table border=1px>
     <tr>
         <td>Patient:</td>
         <td>{{appt.Patient}}</td>
@@ -19,4 +19,7 @@
     </tr>
 </table>
 
+<form action="/calendar/appointment">
+    <input type="submit" value="Return to Appointments">
+</form>
 {% endblock %}

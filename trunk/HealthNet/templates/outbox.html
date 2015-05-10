@@ -1,0 +1,25 @@
+{% extends "header.html" %}
+
+{% block title %}Messaging{% endblock %}
+
+{% block content %}
+
+<ul>
+<a href = "/messaging/inbox/1/">Inbox</a>	Outbox
+<a href = "/messaging/new/">New message</a><br><br>
+{% for message in recent_messages %}
+Subject: {{message.subject}} From: {{message.sentby}}<br>
+At: {{message.timesent}} <a href = "/messaging/view/{{message.id}}/">
+Link</a><br><br>
+{% endfor %}
+</ul>
+
+{% if notfirst %}
+<a href = "/messaging/outbox/{{lastpage}}/">Older</a>
+{% endif %}
+
+{% if notfirst %}
+<a href = "/messaging/outbox/{{nextpage}}/">Newer</a>
+{% endif %}
+
+{% endblock %}

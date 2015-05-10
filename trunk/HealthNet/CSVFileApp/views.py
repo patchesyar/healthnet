@@ -1,5 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from django.views.generic import FormView, DetailView, ListView
+from .forms import ProfileImageForm
+from .models import ProfileImage
 
 # Create your views here.
 #Author: Michael Elgin
@@ -61,7 +66,33 @@ def processing(request):
 
 def johnsImplementationOfLines32To40(self):
     for line in file:
-        wordList=line.split(",")  # creates an array of strings between the commas ("Hello, world"-> ["Hello","world"])
         wordList[0]=wordList[0].lower()  # convert the first word to lowercase, may not be needed
         typeWord = wordList[0]  # save the first word into typeWord.
                                 # Can also use typeWord=wordList[0].lower if omitting line 65
+
+#These are some class based views that Mike is testing to attempt to get file uploading to work.
+class ProfileImageView(FormView):
+    template_name = 'file_upload.html'
+    form_class = ProfileImageForm
+
+    def form_valid(self):
+        profile_image = ProfileImage(
+            image = self.get_form_kwargs().get('files'))
+        profile_image.save()
+        self.id = profile_image.id
+
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('profile_image', kwargs = {'pk': self.id})
+
+class ProfileDetailView(DetailView):
+    model = ProfileImage
+    template_name= 'file_upload.html'
+    context_object_name = 'image'
+
+class ProfileImageIndexView(ListView):
+    model = ProfileImage
+    template_name = 'file_upload.html'
+    context_object_name = 'images'
+    queryset = ProfileImage.objects.all()

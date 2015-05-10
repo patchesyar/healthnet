@@ -5,11 +5,14 @@
 {% block content %}
 <p style="font-size:20px">Here users can be generated into the system with CSV files.</p>
 <br>
-<p style="font-size:18px">The format for the CSV file generation is one of the following:</p>
+<p style="font-size:18px">The format for every line in a CSV file must conform to one of the following formats, with the first word in the line being either "Doctor", "Nurse", "Admin", or "Patient". The rest of the items are the user's actual information.</p>
 <p style="font-size:18px">Doctor, First Name, Last Name, Email, Password, Hospital</p>
 <p style="font-size:18px">Nurse, First Name, Last Name, Email, Password, Hospital</p>
 <p style="font-size:18px">Admin, First Name, Last Name, Email, Password, Hospital</p>
-<p style="font-size:18px">Patient, First Name, Last Name, Email, Password, Hospital, Insurance Number, Primary Doctor</p>
+<p style="font-size:18px">Patient, First Name, Last Name, Email, Password, Hospital, Insurance Number, Primary
+    Doctor</p>
 <br>
-<p style="font-size:18px"><a href = '/CSVprocessing/'>Submit</a></p>
+<p style="font-size:18px"><a href='/upload/'>Upload</a></p>
+<br>
+<p style="font-size:18px"><a href='/CSVprocessing/'>Submit</a></p>
 {% endblock %}

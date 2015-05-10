@@ -1,5 +1,8 @@
 from django.db import models
 from datetime import *
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "HealthNet.settings")
@@ -79,66 +82,125 @@ class Hospital(models.Model):
     def __str__(self):
         return self.name
 
+class DoctorManager(models.Manager):
 
-class User(models.Model):  # superclass is models.Model (i think) -mike
-    """
-    this is the parent class for all types of users
-    any attributes or methods that belong to all users should go here.
-    Attributes:
-        First name
-        Last name
-    """
+    def create_doctor(self, hospital, user):
+        doc = self.create(user=user)
+        doc.hospital.add(hospital)
+        return doc
 
-    # Here are the attributes for the names
+class NurseManager(models.Manager):
 
-    first_name = models.CharField(max_length=25)
-    last_name = models.CharField(max_length=25)
-    messages = []  # list of message objects
-    appointments = []  # list of appointment objects
-    password = models.CharField(max_length=25)
-    email = models.CharField(max_length=100)
-    phone = models.CharField(max_length=10)
-    insurance = models.CharField(max_length=100)
+    def create_nurse(self, user, hospital):
+        nurse = self.create(user=user)
+        nurse.hospital.add(hospital)
+        return nurse
 
-    # ToString method:
-    def __str__(self):
-        return self.first_name + " " + self.last_name
+class AdminManager(models.Manager):
 
+    def create_admin(self, user, hospital):
+        admin = self.create(user=user)
+        admin.hospital.add(hospital)
+        return admin
 
-class Doctor(User):  # inherits from User
+class PatientManager(models.Manager):
+
+    def create_patient(self, user, phone, insuranceID,
+                       emergencyFirstName, emergencyLastName, emergencyPhone,
+                       sex):
+        patient = self.create(user=user)
+        patient.phone = phone
+        patient.insuranceID = insuranceID
+        patient.emergencyFirstName = emergencyFirstName
+        patient.emergencyLastName = emergencyLastName
+        patient.emergencyPhone = emergencyPhone
+        patient.sex = sex
+        return patient
+
+class Doctor(models.Model):
     """
     Doctor extends user
     Attributes:
          patient list
     """
-    patients = []  # list of patients
-    hospital = models.ForeignKey(Hospital)
+    user = models.OneToOneField(User)
+    hospital = models.ManyToManyField(Hospital)
+    verified = models.BooleanField(blank=False, default=False)
+    objects = DoctorManager()
 
+    def verify(self):
+        "Edits the boolean field inside the doctor obj to reflect verification"
+        self.verified = True
+        self.save()
 
-class Nurse(User):
+    def __str__(self):
+        "returns string of doctor's name"
+        return self.user.first_name + " " + self.user.last_name
+
+class Nurse(models.Model):
     """
     Nurse extends user
     Attributes:
         specialization (the word "type" was a python keyword)
     """
+    user = models.OneToOneField(User)
     specialization = models.CharField(max_length=200)
     hospital = models.ForeignKey(Hospital)
+    verified = models.BooleanField(blank=False, default=False)
+    objects = NurseManager()
+
+    def verify(self):
+        self.verified = True
+        self.save()
+
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name
 
 
-class Administrator(User):
+class Administrator(models.Model):
     """
     According to the Static UML, admin extends user. Considering these will be superusers, I don't know if self makes too much sense - mike.
     """
+    user = models.OneToOneField(User)
     hospital = models.ForeignKey(Hospital)
+    verified = models.BooleanField(blank=False, default=False)
+    objects = AdminManager()
+
+    def verify(self):
+        self.verified = True
+        self.save()
+
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name
 
 
-class Patient(User):
+class Patient(models.Model):
     """
     Patient extends user
     """
-    prescriptions = None  # One to many relationship with prescription objects
-    associated_doctor = models.ForeignKey(Doctor)
-    hospital = models.ForeignKey(Hospital)
+    user = models.OneToOneField(User)
+    associated_doctor = models.ForeignKey(Doctor, null=True)
+    hospital = models.ForeignKey(Hospital, null=True)
+    dateOfBirth = models.DateField(blank=True, null=True)
+    phone = models.CharField(max_length=12, blank=False)
+    insuranceID = models.CharField(max_length=15, blank=False)
+    emergencyFirstName = models.CharField(max_length=50, blank=False)
+    emergencyLastName = models.CharField(max_length=50, blank=False)
+    emergencyPhone = models.CharField(max_length=12, blank=False)
+    #emergencyContact = models.ForeignKey('Patient', required=True)
+    sex = models.CharField(max_length=6, blank=False)
+    height = models.IntegerField(blank=True, null=True)
+    weight = models.IntegerField(blank=True, null=True)
+    objects = PatientManager()
+    
+
+
+class AppointmentManager(models.Manager):
+    def create_appointment(self, patient, doctor, time):
+        appt = self.create(Patient=patient, Doctor=doctor, Time=time)
+        return appt
+
+    # todo: add validates methods, stop using Ruby name conventions
 
 
 class Appointment(models.Model):
@@ -150,8 +212,10 @@ class Appointment(models.Model):
     """
     Doctor = models.ForeignKey(Doctor)
     Patient = models.ForeignKey(Patient)
-    time = models.DateTimeField()
+    Time = models.DateTimeField()
+    objects = AppointmentManager()
 
     # ToString method:
     def __str__(self):
         return self.Doctor.last_name + " " + self.Patient.last_name
+

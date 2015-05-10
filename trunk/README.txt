@@ -13,6 +13,12 @@ Disclaimer: This is the first release of the software. It is intended to deliver
 
 Statistical data for the users of the system may not be available with this release
 Patient tests (such as x-ray, blood tests, etc.) are not yet a part of the system. This means they cannot have associated images yet as well.
+Only some patient information can be viewed right now.
+Appointment creating can only be done through the admin panel right now.
+Prescriptions can be added only through the admin panel right now.
+Doctors and nurses can be created only through the admin panel right now.
+Medical records and tests can be registered but not viewed.
+CSV files cannot yet be uploaded to the system.
 
 4) Basic execution and usage instructions (logins & passwords)
 

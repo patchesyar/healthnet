@@ -1,0 +1,22 @@
+{% extends "header.html" %}
+
+{% block title %}Messaging{% endblock %}
+
+{% block content %}
+
+{% if error_message %}<p class='error'>
+	Sorry, that's not a valid recipient.</p>
+{% endif %}
+
+<form id = "newmessage" action="send/" method="post">
+	{% csrf_token %}
+	<label for="subject">Subject:</label>
+	<input type="text" name="subject" value="{{subject}}" id="subject" maxlength=128><br><br>
+	<label for="sendto">To:</label>
+	<input type="text" name="sendto" value="" id="sendto" maxlength=20><br><br>
+	<textarea name="message" value="" id="message" maxlength=1024 rows="10" cols=80>
+	</textarea><br><br>
+	<input type="submit" value="Send">
+</form>
+
+{% endblock %}
